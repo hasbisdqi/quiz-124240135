@@ -12,6 +12,13 @@ class Detail extends StatefulWidget {
 }
 
 class _DetailState extends State<Detail> {
+  bool fav = false;
+  void _setFav() {
+    setState(() {
+      fav = !fav;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final destination = widget.destination;
@@ -44,8 +51,13 @@ class _DetailState extends State<Detail> {
                       ),
                       Spacer(),
                       IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.favorite_outline),
+                        onPressed: () {
+                          _setFav();
+                        },
+                        icon: Icon(
+                          fav ? Icons.favorite : Icons.favorite_outline,
+                          color: fav ? Colors.red : Colors.grey,
+                        ),
                       ),
                     ],
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kuis/auth/login.dart';
 import 'package:kuis/models/destinationModels.dart';
 import 'package:kuis/pages/detail.dart';
 
@@ -8,7 +9,21 @@ class Destination extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Destinations")),
+      appBar: AppBar(
+        title: Text("Destinations"),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+                (Route<dynamic> route) => false,
+              );
+            },
+            icon: Icon(Icons.logout),
+          ),
+        ],
+      ),
       body: ListView.builder(
         itemCount: destinationList.length,
         itemBuilder: (context, index) {
@@ -41,12 +56,6 @@ class Destination extends StatelessWidget {
                 height: 50,
                 width: 50,
               ),
-              // trailing: Column(
-              //   children: [
-              //     const Icon(Icons.star, color: Colors.amber),
-              //     Text(destination.rating.toString()),
-              //   ],
-              // ),
             ),
           );
         },
